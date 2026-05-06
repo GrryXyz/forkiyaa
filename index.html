@@ -1,489 +1,105 @@
-<!DOCTYPE html>
-<html lang="id">
+<html>
+<meta charset='UTF-8' />
+<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5'
+  name='viewport' />
+<meta content='IE=edge' http-equiv='X-UA-Compatible' />
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+<link href="https://htmlku.com/akuakan/play/style.css" rel="stylesheet" type="text/css" />
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maaf Sayangku ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Floating hearts background */
-        .heart {
-            position: fixed;
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.6);
-            animation: float 6s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            text-align: center;
-            padding: 40px 20px;
-            animation: fadeInDown 1s ease;
-        }
-
-        .header h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 3em;
-            color: #d63384;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            color: #6c757d;
-            font-weight: 300;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 20px 0;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            animation: fadeInUp 1s ease;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .music-section {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .music-icon {
-            font-size: 4em;
-            animation: bounce 2s infinite;
-            display: inline-block;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .soundcloud-embed {
-            width: 100%;
-            height: 166px;
-            border: none;
-            border-radius: 20px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .song-info {
-            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 20px;
-            margin: 15px 0;
-            font-weight: 600;
-        }
-
-        .apology-messages {
-            display: grid;
-            gap: 20px;
-        }
-
-        .message {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            padding: 25px;
-            border-radius: 20px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .message:nth-child(2) {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #495057;
-        }
-
-        .message:nth-child(3) {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #495057;
-        }
-
-        .message:nth-child(4) {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            color: white;
-        }
-
-        .message:nth-child(5) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .message:nth-child(6) {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-        }
-
-        .message:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .message::before {
-            content: '💌';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 3em;
-            opacity: 0.2;
-            transform: rotate(15deg);
-        }
-
-        .message h3 {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .message p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .funny-badge {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .interactive-section {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .hug-button {
-            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
-            color: white;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.3em;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Pacifico', cursive;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hug-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
-        }
-
-        .hug-button:active {
-            transform: scale(0.95);
-        }
-
-        .hidden-message {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: white;
-            border-radius: 20px;
-            color: #d63384;
-            font-size: 1.2em;
-            animation: popIn 0.5s ease;
-            font-weight: 600;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .photo-placeholder {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5em;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #6c757d;
-            font-size: 0.9em;
-        }
-
-        .footer .heart-beat {
-            color: #e74c3c;
-            animation: heartbeat 1.5s infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.2); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.2); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .sticker {
-            font-size: 2em;
-            margin: 0 5px;
-            display: inline-block;
-            animation: wiggle 2s infinite;
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #f0f;
-            animation: confetti-fall 3s linear forwards;
-            z-index: 100;
-        }
-
-        @keyframes confetti-fall {
-            to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-
-        @media (max-width: 600px) {
-            .header h1 { font-size: 2em; }
-            .card { padding: 25px; }
-            .message h3 { font-size: 1.2em; }
-            .message p { font-size: 1em; }
-            .soundcloud-embed { height: 120px; }
-        }
-    </style>
+  <title>SPECIAL FOR MY GIRL</title>
+  <link rel="icon" type="image/svg+xml" href="https://feeldreams.github.io/main-icon.png">
+  <link rel="apple-touch-icon" href="https://feeldreams.github.io/main-icon.png">
+  <!-- 
+  Made with love by Rayys!
+  
+     Blog: www.feeldream.id
+     Instagram: @rayyarrr
+     TikTok: @feelthisray
+     
+  Thanks to all <3
+-->
 </head>
+
 <body>
-    <!-- Floating hearts -->
-    <div class="heart" style="left: 10%; animation-delay: 0s;">💖</div>
-    <div class="heart" style="left: 20%; animation-delay: 1s;">💕</div>
-    <div class="heart" style="left: 30%; animation-delay: 2s;">💗</div>
-    <div class="heart" style="left: 50%; animation-delay: 3s;">💝</div>
-    <div class="heart" style="left: 70%; animation-delay: 1.5s;">💘</div>
-    <div class="heart" style="left: 80%; animation-delay: 2.5s;">💖</div>
-    <div class="heart" style="left: 90%; animation-delay: 0.5s;">💕</div>
 
-    <div class="container">
-        <div class="header">
-            <div class="photo-placeholder">🥺</div>
-            <h1>Maaf Sayangku</h1>
-            <p>Website khusus buat kamu yang lagi ngambek <span class="sticker">😢</span></p>
-        </div>
+  <div id="bodyblur">
+    <!-- Wallpaper / Background --><img src="https://th.bing.com/th/id/OIP.SZr10ElcwkS_sETaDTDqHwHaO0?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+      id="wallpaper" />
+  </div>
 
-        <div class="card">
-            <div class="music-section">
-                <div class="music-icon">🎵</div>
-                <h2 style="font-family: 'Pacifico', cursive; color: #d63384; margin: 15px 0;">Lagu Minta Maaf</h2>
-                
-                <!-- SoundCloud Embed -->
-                <iframe 
-                    width="100%" 
-                    height="200" 
-                    src="https://youtu.be/FcOctsNXyjk?si=mgy4_EYJ4DwtQRBF" 
-                    title="Lagu Minta Maaf" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </iframe>
-                
-                <div class="song-info">
-                    🎧 Cinta Luar Biasa - Andmesh<br>
-                    <small>Lagu khusus buat minta maaf ke kamu 🥺</small>
-                </div>
-                
-                <p style="color: #6c757d; font-style: italic; margin-top: 10px;">
-                    *Klik play di atas untuk dengerin lagu spesial ini! 🎶
-                </p>
-            </div>
-        </div>
+  <div class="kumpulanstiker">
+    <!-- Stiker untuk Konten -->
+    <img src="https://feeldreams.github.io/pusn.gif" id="stiker1" />
+    <img src="https://feeldreams.github.io/wortel.gif" id="stiker2" />
+    <img src="https://feeldreams.github.io/mndkat.gif" id="stiker3" />
+    <img src="https://feeldreams.github.io/ngumpet.gif" id="stiker4" />
 
-        <div class="card">
-            <h2 style="text-align: center; font-family: 'Pacifico', cursive; color: #d63384; margin-bottom: 30px; font-size: 2em;">
-                Kata-Kata untuk kamu yang aku cintaii <span class="sticker">🙏</span>
-            </h2>
-            
-            <div class="apology-messages">
-                <div class="message" onclick="this.style.transform='rotate(-3deg)'">
-                    <span class="funny-badge" style="background: #4ecdc4;">#ScientificFact</span>
-                    <h3>Bukti Ilmiah</h3>
-                    <p>"Menurut penelitian, orang yang sering minta maaf ke pacarnya hidupnya 10 tahun lebih lama. Aku minta maaf biar bisa hidup lama sama kamu!" <span class="sticker">🧪</span></p>
-                </div>
+    <div id='Content'>
 
-                <div class="message" onclick="this.style.transform='rotate(3deg)'">
-                    <span class="funny-badge" style="background: #f7b731;">#CodingLife</span>
-                    <h3>Error 404: Kesabaran Hilang</h3>
-                    <p>"Maaf ya sayang, kemarin aku kayak program error. Coba restart hati aku dengan senyuman kamu, nanti langsung normal lagi!" <span class="sticker">💻</span></p>
-                </div>
+      <div id="suratin" onClick="memulai();audio.play();">
+        <!-- Surat --><img src="https://rayyscoding.github.io/envelope.png" />
+      </div>
+      <p id="ket">Klik Suratnya!</p>
 
-                <div class="message" onclick="this.style.transform='rotate(-3deg)'">
-                    <span class="funny-badge" style="background: #5f27cd;">#DilanMode</span>
-                    <h3>Gaya Dilan</h3>
-                    <p>"Sayang, jangan marah aku. Marah itu berat. Biar aku aja yang minta maaf berkali-kali sampai kamu senyum lagi." <span class="sticker">📖</span></p>
-                </div>
+      <div>
+        <!-- Foto Akhir -->
+        <img src="https://feeldreams.github.io/pandapukpuk.gif" id="fotoakhir" />
+        <img src="https://feeldreams.github.io/gumush.gif" id="fotoakhir2" />
+      </div>
+      <div>
+        <blockquote id='bq'>
+          <p id="kalimat"></p>
+          <p id="kalimatc"></p>
+        </blockquote>
+      </div>
 
-                <div class="message" onclick="this.style.transform='rotate(3deg)'">
-                    <span class="funny-badge" style="background: #e74c3c;">#SadTruth</span>
-                    <h3>Fakta Pahit</h3>
-                    <p>"Aku baru sadar, ternyata aku tuh kayak WiFi di kosan: kadang ilang sendiri, sinyalnya nggak stabil, tapi sebenarnya aku butuh kamu terus!" <span class="sticker">📶</span></p>
-                </div>
+      <!-- Tombol Kirim Pesan -->
+      <div id="Tombol">
+        <a onClick="sjawab()">
+          <b>💌 Balas</b>
+        </a>
+      </div>
 
-                <div class="message" onclick="this.style.transform='rotate(-3deg)'">
-                    <span class="funny-badge" style="background: #00b894;">#Promise</span>
-                    <h3>Janji Manis (Tapi Beneran)</h3>
-                    <p>"Aku janji bakal jadi versi terbaik dari diriku. Kalau aku ulangi kesalahan lagi, kamu boleh hukum aku dengan ciuman!" <span class="sticker">😘</span></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" style="text-align: center;">
-            <h2 style="font-family: 'Pacifico', cursive; color: #d63384; margin-bottom: 20px;">
-                Aku Beneran Nyesel <span class="sticker">😭</span>
-            </h2>
-            <p style="font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 20px;">
-                Sayang, aku tahu kata maaf aja nggak cukup. Tapi aku beneran nyesel udah bikin kamu sedih. 
-                Kamu itu orang paling berharga buat aku, dan aku nggak mau kehilangan senyum kamu. 
-                Maafin aku ya? <span class="sticker">🥺</span>
-            </p>
-            <p style="font-size: 1.2em; color: #d63384; font-weight: 600; font-style: italic;">
-                "Kamu = obat rindu. Kamu + Aku = paket hemat cinta." <span class="sticker">💖</span>
-            </p>
-        </div>
-
-        <div class="interactive-section">
-            <button class="hug-button" onclick="showLove()">
-                Klik Kalau Kamu Maafin Aku 🤗
-            </button>
-            <div id="hiddenMessage" class="hidden-message">
-                🎉 YEAY! KAMU MAAFIN AKU! 🎉<br><br>
-                Aku janji bakal jadi pacar yang lebih baik!<br>
-                Love you to the moon and back! 🌙💖<br><br>
-                <span style="font-size: 2em;">🥰💕💗💝💘💖</span>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>Dibuat dengan <span class="heart-beat">❤️</span> oleh Grey untuk Kiyaa</p>
-            <p style="margin-top: 10px; font-size: 0.8em;">© 2026 - Janji nggak akan diulangi</p>
-        </div>
     </div>
 
-    <script>
-        function showLove() {
-            const hiddenMsg = document.getElementById('hiddenMessage');
-            hiddenMsg.style.display = 'block';
-            
-            // Create confetti
-            for (let i = 0; i < 50; i++) {
-                createConfetti();
-            }
-            
-            // Scroll to message
-            hiddenMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+    <script src="https://htmlku.com/akuakan/play/script.js"></script>
 
-        function createConfetti() {
-            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd'];
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.top = '-10px';
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-            document.body.appendChild(confetti);
-            
-            setTimeout(() => confetti.remove(), 5000);
-        }
+    <script type="text/javascript">
+      async function pertama() {
+        audio = new Audio('https://audio.jukehost.co.uk/5VfcVfr1D3fIU8m27X85m5HVkPyRIhQr'); showDiv();
+      } pertama();
 
-        // Add floating hearts dynamically
-        setInterval(() => {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            heart.innerHTML = ['💖', '💕', '💗', '💝', '💘'][Math.floor(Math.random() * 5)];
-            document.body.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 8000);
-        }, 2000);
 
-        // Add click effect to messages
-        document.querySelectorAll('.message').forEach(msg => {
-            msg.addEventListener('click', function() {
-                this.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 300);
-            });
+      async function pesan() {
+        await swalst.fire({
+          title: 'Hii Kamuu! 😍',
+          imageUrl: '' + stiker1.src,
         });
+
+        await swalst.fire({
+          title: 'Maaf ya Kalo Aku<br>Suka Bikin Kamu Kesel 🫠',
+          imageUrl: '' + stiker2.src,
+        });
+
+        await swalst.fire({
+          title: 'Dan Bikin Kamu Marah² Terus 🫠',
+          imageUrl: '' + stiker3.src,
+        });
+
+        await swalst.fire({
+          title: 'Aku Cuma Mau Bilang.. 🫶',
+          imageUrl: '' + stiker4.src,
+        });
+
+        katangetik = "<b class='putih merah fontalt'>Maaf yaa</b> aku belum bisa jadi<br>yang terbaik buat kamu,<br><br>Aku juga gabisa sepenuhnya ngertiin gimana cara kamu ingin dicintai,<br><br>Aku terlalu banyak kurangnya buat orang sespesial kamu,<br><br>Tapi... Aku akan berusaha yang terbaik buat kamu kok 🥰";
+        katangetik2 = "<i>I Love uuu more</i> 💐🫣🩷";
+
+        setTimeout(kpemb, 200);
+      }
     </script>
 </body>
+
 </html>
