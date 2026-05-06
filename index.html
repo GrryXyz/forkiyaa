@@ -92,15 +92,17 @@
             50% { transform: translateY(-20px); }
         }
 
-        .audio-player {
+        .soundcloud-embed {
             width: 100%;
+            height: 166px;
+            border: none;
+            border-radius: 20px;
             margin: 20px 0;
-            border-radius: 50px;
-            outline: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .song-info {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
             color: white;
             padding: 15px;
             border-radius: 20px;
@@ -136,6 +138,16 @@
 
         .message:nth-child(4) {
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+        }
+
+        .message:nth-child(5) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .message:nth-child(6) {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
         }
 
@@ -183,7 +195,7 @@
         }
 
         .hug-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
             color: white;
             border: none;
             padding: 20px 50px;
@@ -192,14 +204,14 @@
             cursor: pointer;
             font-family: 'Pacifico', cursive;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
             position: relative;
             overflow: hidden;
         }
 
         .hug-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
         }
 
         .hug-button:active {
@@ -291,7 +303,6 @@
             width: 10px;
             height: 10px;
             background: #f0f;
-            position: absolute;
             animation: confetti-fall 3s linear forwards;
             z-index: 100;
         }
@@ -305,6 +316,7 @@
             .card { padding: 25px; }
             .message h3 { font-size: 1.2em; }
             .message p { font-size: 1em; }
+            .soundcloud-embed { height: 120px; }
         }
     </style>
 </head>
@@ -330,25 +342,29 @@
                 <div class="music-icon">🎵</div>
                 <h2 style="font-family: 'Pacifico', cursive; color: #d63384; margin: 15px 0;">Lagu Minta Maaf</h2>
                 
+                <!-- SoundCloud Embed -->
+                <iframe 
+                    class="soundcloud-embed"
+                    scrolling="no" 
+                    frameborder="no" 
+                    allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2048329520&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+                
                 <div class="song-info">
-                    🎧 "Maaf" - unknown<br>
-                    <small>(Klik play untuk mendengarkan lagu minta maaf)</small>
+                    🎧 "Maaf" - buatkipi<br>
+                    <small>Lagu khusus buat minta maaf ke kamu 🥺</small>
                 </div>
-
-                <audio class="audio-player" controls loop>
-                    <source src="https://soundcloud.com/buatkipi/maaf?si=059e5d13218c4ee18997febd572e75b7&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" type="audio/mpeg">
-                    Browser kamu tidak mendukung audio. Tapi maafku tetap tulus! 🎶
-                </audio>
                 
                 <p style="color: #6c757d; font-style: italic; margin-top: 10px;">
-                    *Kalau lagunya nggak bisa play, bayangin aja aku nyanyi "Is it too late now to say sorry?" 🎤😅
+                    *Klik play di atas untuk dengerin lagu spesial ini! 🎶
                 </p>
             </div>
         </div>
 
         <div class="card">
             <h2 style="text-align: center; font-family: 'Pacifico', cursive; color: #d63384; margin-bottom: 30px; font-size: 2em;">
-                kata kata yang disusun untukMu <span class="sticker">🙏</span>
+                Kata-Kata untuk kamu yang aku cintaii <span class="sticker">🙏</span>
             </h2>
             
             <div class="apology-messages">
@@ -411,7 +427,7 @@
         </div>
 
         <div class="footer">
-            <p>Dibuat dengan <span class="heart-beat">❤️</span> oleh Grey Untuk Kiya</p>
+            <p>Dibuat dengan <span class="heart-beat">❤️</span> oleh Grey untuk Kiyaa</p>
             <p style="margin-top: 10px; font-size: 0.8em;">© 2026 - Janji nggak akan diulangi</p>
         </div>
     </div>
@@ -435,6 +451,7 @@
             const confetti = document.createElement('div');
             confetti.className = 'confetti';
             confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
             confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
             confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
